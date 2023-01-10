@@ -56,7 +56,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $uriProtocol = 'REQUEST_URI';
+    public $uriProtocol = 'QUERY_STRING';
 
     /**
      * --------------------------------------------------------------------------
