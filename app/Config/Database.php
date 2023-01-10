@@ -52,7 +52,7 @@ class Database extends Config
 
     public $att = [
         'DSN'      => '',
-        'hostname' => '10.1.7.82',
+        'hostname' => '11.22.33.2',
         'username' => 'sa',
         'password' => 'P@ssw0rd1',
         'database' => 'att2000',
