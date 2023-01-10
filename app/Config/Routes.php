@@ -35,7 +35,8 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('', 'Mobile\Home::index');
+$routes->get('', 'Home::index', ['filter' => 'cors']);
+$routes->get('/', 'Home::index', ['filter' => 'cors']);
 $routes->get('mobile/home', 'Mobile\Home::index', ['filter' => 'auth']);
 $routes->get('mobile/home/absen', 'Mobile\Home::absen/$1', ['filter' => 'auth']);
 $routes->get('mobile/home/absen/(:any)', 'Mobile\Home::absen/$1', ['filter' => 'auth']);
