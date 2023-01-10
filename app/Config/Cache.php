@@ -22,7 +22,7 @@ class Cache extends BaseConfig
      *
      * @var string
      */
-    public $handler = 'file';
+    public $handler = 'redis';
 
     /**
      * --------------------------------------------------------------------------
@@ -153,8 +153,8 @@ class Cache extends BaseConfig
      * @var array<string, int|string|null>
      */
     public $redis = [
-        'host'     => '127.0.0.1',
-        'password' => null,
+        'host'     => '10.33.0.13',
+        'password' => '0B1U5mmNdHYCbnatJpLmdVEf9fCo2hwUBmpr/htge40m7CGECFy4zR0grKiha9EOGCjl4Zyi3IsF6mhP',
         'port'     => 6379,
         'timeout'  => 0,
         'database' => 0,
