@@ -47,7 +47,7 @@ class Database extends Config
         'compress' => false,
         'strictOn' => false,
         'failover' => [],
-        'port'     => 81,
+        'port'     => 1433,
     ];
 
     public $att = [
@@ -67,7 +67,7 @@ class Database extends Config
         'compress' => false,
         'strictOn' => false,
         'failover' => [],
-        'port'     => 81,
+        'port'     => 1433,
     ];
 
     /**
