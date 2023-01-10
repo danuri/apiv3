@@ -24,7 +24,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'https://ropegdev.kemenag.go.id/api/';
+    public $baseURL = 'https://ropegdev.kemenag.go.id/';
 
     /**
      * --------------------------------------------------------------------------
