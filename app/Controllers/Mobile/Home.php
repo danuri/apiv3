@@ -118,6 +118,21 @@ class Home extends BaseController
         return $this->response->setJSON( $absens )->setStatusCode(200);
     }
 
+    function setkoordinat($lat=false,$lon=false)
+    {
+        if($lat && $lon){
+        $data = (object) array('status' => 'success', 'message' => 'Data berhasil disimpan!');
+        
+        return $this->response->setJSON( $data )->setStatusCode(200);
+
+        }else{
+        $data = (object) array('status' => 'error', 'message' => 'Latitude dan Longitude tidak terbaca!');
+
+        $this->response($data, REST_Controller::HTTP_BAD_REQUEST);
+        return $this->response->setJSON( $data )->setStatusCode(400);
+        }
+    }
+
     function distance($lat1, $lon1, $lat2, $lon2) {
         $theta = $lon1 - $lon2;
         $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));

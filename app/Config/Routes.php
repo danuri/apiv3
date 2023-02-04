@@ -42,6 +42,7 @@ $routes->get('mobile/home/absen', 'Mobile\Home::absen/$1', ['filter' => 'auth'])
 $routes->get('mobile/home/absen/(:any)', 'Mobile\Home::absen/$1', ['filter' => 'auth']);
 
 $routes->post('mobile/auth/login', 'Mobile\Auth::login', ['filter' => 'cors']);
+$routes->get('mobile/auth/test88', 'Mobile\Auth::test', ['filter' => 'cors']);
 
 /*
  * --------------------------------------------------------------------
