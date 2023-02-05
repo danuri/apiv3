@@ -42,7 +42,8 @@ class Home extends BaseController
         
         $user = $absendb->getRow('USERINFO',['BADGENUMBER'=>$niplama]);
         $grup = array('21100','21200','21300','21400','21500','21600','21700','21800','21900','22000','23000');
-        if (!in_array($pegawai->KODE_GRUP_SATUAN_KERJA, $grup) ) // || $pegawai->KODE_LEVEL_JABATAN != '213' || $pegawai->KODE_LEVEL_JABATAN != '216'
+        $kodeleveljab = array('213','216');
+        if (!in_array($pegawai->KODE_GRUP_SATUAN_KERJA, $grup) || !in_array($pegawai->KODE_LEVEL_JABATAN,$kodeleveljab))
         {
             //$checkip = $this->presonline_model->get_row('ipsatker',array('ip'=>$ip));
 
@@ -61,7 +62,10 @@ class Home extends BaseController
         }else if($user->TimeZone3 == 1){
             date_default_timezone_set('Asia/Jayapura');
             $clock =date('Y-m-d H:i:s');
-        }
+        }else if($user->TimeZone4 == 1){
+            date_default_timezone_set('Asia/Yangon');
+            $clock =date('Y-m-d H:i:s');
+          }
 
         $time = $clock.'.000';
         $tipe = 'I';

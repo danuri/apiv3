@@ -37,7 +37,7 @@ class SimpegModel extends Model
 
   public function getPegawai($nip)
   {
-    $query = $this->db->query("SELECT * FROM TEMP_PEGAWAI WHERE NIP_BARU='$nip'")->getRow();
+    $query = $this->db->query("SELECT NIP,NAMA,SATKER_KELOLA,LAT,LON,KODE_GRUP_SATUAN_KERJA,KODE_LEVEL_JABATAN,SATKER_1,KODE_SATUAN_KERJA FROM TEMP_PEGAWAI WHERE NIP_BARU='$nip'")->getRow();
     return $query;
   }
 
