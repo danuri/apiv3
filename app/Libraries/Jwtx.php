@@ -54,7 +54,7 @@ class Jwtx {
         $payload = [
             'username' => $u,
             'satker' => $data->SATKER_1,
-            'kode_satker' => $data->KODE_SATUAN_KERJA,
+            'kode_satker' => $data->KODE_SATKER_1,
             'satker_kelola' => $data->SATKER_KELOLA,
             'name' => $pegawai->NAMA,
             'iss' => $this->iss,

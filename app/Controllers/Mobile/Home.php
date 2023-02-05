@@ -45,14 +45,14 @@ class Home extends BaseController
         $kodeleveljab = array('213','216');
         if (!in_array($pegawai->KODE_GRUP_SATUAN_KERJA, $grup) || !in_array($pegawai->KODE_LEVEL_JABATAN,$kodeleveljab))
         {
-            //$checkip = $this->presonline_model->get_row('ipsatker',array('ip'=>$ip));
+            $checkip = $db->getRow('ipsatker',array('ip'=>$ip));
 
-            // if(!$checkip){
-            if($jarak > 500){
-                $data = (object) array('status' => 'error', 'message'=>'Gunakan jaringan Kementerian Agama atau Pastikan Lokasi Anda berada di sekitar Kantor untuk melakukan absensi');
-                return $this->response->setJSON( $data )->setStatusCode(409);
+            if(!$checkip){
+                if($jarak > 500){
+                    $data = (object) array('status' => 'error', 'message'=>'Gunakan jaringan Kementerian Agama atau Pastikan Lokasi Anda berada di sekitar Kantor untuk melakukan absensi');
+                    return $this->response->setJSON( $data )->setStatusCode(409);
+                }
             }
-            // }
         }
 
         $clock =date('Y-m-d H:i:s');

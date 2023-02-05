@@ -24,17 +24,17 @@ class Auth extends BaseController
         $db = new SimpegModel;
 
 		
-		$pegawai  = $db->getRow('TS_USER',['NIP' => $u,'PWD' => $p2.$p1]);
+		$pegawai  = $db->getRow('TEMP_PEGAWAI_SSO',['NIP_USER' => $u,'PWD' => $p2.$p1]);
 
 		if( $pegawai )
 		{
-            $data = $db->getPegawai($u);
+            //$data = $db->getPegawai($u);
             
             $jwt = new Jwtx;
 
             $output['status'] = TRUE;
-            $output['token'] = $jwt->token($pegawai,$u,$data);
-            $output['user'] = ['id'=>$pegawai->NIP,'name'=>$pegawai->NAMA,'satker_kelola'=>$data->SATKER_KELOLA];
+            $output['token'] = $jwt->token($pegawai,$u,$pegawai);
+            $output['user'] = ['id'=>$pegawai->NIP_USER,'name'=>$pegawai->NAMA,'satker_kelola'=>null];
 
             return $this->response->setJSON( $output );
 
@@ -64,17 +64,17 @@ class Auth extends BaseController
         $db = new SimpegModel;
 
 		
-		$pegawai  = $db->getRow('TS_USER',['NIP' => $u,'PWD' => $p2.$p1]);
+		$pegawai  = $db->getRow('TEMP_PEGAWAI_SSO',['NIP_USER' => $u,'PWD' => $p2.$p1]);
 
 		if( $pegawai )
 		{
-            $data = $db->getPegawai($u);
+            //$data = $db->getPegawai($u);
             
             $jwt = new Jwtx;
 
             $output['status'] = TRUE;
-            $output['token'] = $jwt->token($pegawai,$u,$data);
-            $output['user'] = ['id'=>$pegawai->NIP,'name'=>$pegawai->NAMA,'satker_kelola'=>$data->SATKER_KELOLA];
+            $output['token'] = $jwt->token($pegawai,$u,$pegawai);
+            $output['user'] = ['id'=>$pegawai->NIP_USER,'name'=>$pegawai->NAMA,'satker_kelola'=>null];
 
             return $this->response->setJSON( $output );
 
