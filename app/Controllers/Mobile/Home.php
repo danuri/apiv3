@@ -55,8 +55,8 @@ class Home extends BaseController
             }
         }
 
-        $clock =date('Y-m-d H:i:s');
         date_default_timezone_set('Asia/Jakarta');
+        $clock =date('Y-m-d H:i:s');
         if($user->TimeZone2 == 1){
             date_default_timezone_set('Asia/Makassar');
             $clock =date('Y-m-d H:i:s');
