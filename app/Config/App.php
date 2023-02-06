@@ -22,7 +22,7 @@ class App extends BaseConfig
      * explicitly and never rely on auto-guessing, especially in production
      * environments.
      *
-     * @var string
+     * @var string 
      */
     public $baseURL = 'https://ropegdev.kemenag.go.id/';
 
