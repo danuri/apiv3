@@ -42,10 +42,10 @@ class Home extends BaseController
                 $lat = $this->request->getGet('LAT');
                 $lon = $this->request->getGet('LON');
 
-                if($lat && $lon){
-                    $jarak = $this->distance($lat,$lon,$pegawai->LAT,$pegawai->LON);
-                }else if($lat==0 && $lon==0){
+                if($pegawai->LAT == 0 && $pegawai->LON == 0){
                     $jarak = 0;
+                }else if($lat && $lon){
+                    $jarak = $this->distance($lat,$lon,$pegawai->LAT,$pegawai->LON);
                 }else{
                     $data = (object) array('status' => 'error', 'message'=>'Pastikan GPS pada perangkat sudah aktif');
                     return $this->response->setJSON( $data )->setStatusCode(409);
