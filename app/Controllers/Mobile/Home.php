@@ -24,7 +24,7 @@ class Home extends BaseController
         $db = new SimpegModel;
         
         $nip = $uid->username;
-        $pegawai = $db->getPegawai($nip);
+        $pegawai = (object) $db->getPegawai($nip);
         
         $niplama = $pegawai->NIP;
 
