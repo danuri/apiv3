@@ -28,18 +28,6 @@ class Home extends BaseController
         
         $niplama = $pegawai->NIP;
 
-        $lat = $this->request->getGet('LAT');
-        $lon = $this->request->getGet('LON');
-
-        if($lat && $lon){
-            $jarak = $this->distance($lat,$lon,$pegawai->LAT,$pegawai->LON);
-        }else if($lat==0 && $lon==0){
-            $jarak = 0;
-        }else{
-            $data = (object) array('status' => 'error', 'message'=>'Pastikan GPS pada perangkat sudah aktif');
-            return $this->response->setJSON( $data )->setStatusCode(409);
-        }
-
         $absendb = new AbsenModel;
         
         $user = $absendb->getRow('USERINFO',['BADGENUMBER'=>$niplama]);
@@ -50,6 +38,19 @@ class Home extends BaseController
             $checkip = $db->getRow('ipsatker',array('ip'=>$ip));
 
             if(!$checkip){
+
+                $lat = $this->request->getGet('LAT');
+                $lon = $this->request->getGet('LON');
+
+                if($lat && $lon){
+                    $jarak = $this->distance($lat,$lon,$pegawai->LAT,$pegawai->LON);
+                }else if($lat==0 && $lon==0){
+                    $jarak = 0;
+                }else{
+                    $data = (object) array('status' => 'error', 'message'=>'Pastikan GPS pada perangkat sudah aktif');
+                    return $this->response->setJSON( $data )->setStatusCode(409);
+                }
+
                 if($jarak > 500){
                     $data = (object) array('status' => 'error', 'message'=>'Gunakan jaringan Kementerian Agama atau Pastikan Lokasi Anda berada di sekitar Kantor untuk melakukan absensi');
                     return $this->response->setJSON( $data )->setStatusCode(409);
