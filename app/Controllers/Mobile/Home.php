@@ -35,25 +35,28 @@ class Home extends BaseController
         $kodeleveljab = array('213','216');
         if (!in_array($pegawai->KODE_GRUP_SATUAN_KERJA, $grup)) // || !in_array($pegawai->KODE_LEVEL_JABATAN,$kodeleveljab)
         {
-            $checkip = $db->getRow('ipsatker',array('ip'=>$ip));
+            if (!in_array($pegawai->KODE_LEVEL_JABATAN,$kodeleveljab))
+            {
+                $checkip = $db->getRow('ipsatker',array('ip'=>$ip));
 
-            if(!$checkip){
+                if(!$checkip){
 
-                $lat = $this->request->getGet('LAT');
-                $lon = $this->request->getGet('LON');
+                    $lat = $this->request->getGet('LAT');
+                    $lon = $this->request->getGet('LON');
 
-                if($pegawai->LAT == 0 && $pegawai->LON == 0){
-                    $jarak = 0;
-                }else if($lat && $lon){
-                    $jarak = $this->distance($lat,$lon,$pegawai->LAT,$pegawai->LON);
-                }else{
-                    $data = (object) array('status' => 'error', 'message'=>'Pastikan GPS pada perangkat sudah aktif');
-                    return $this->response->setJSON( $data )->setStatusCode(409);
-                }
+                    if($pegawai->LAT == 0 && $pegawai->LON == 0){
+                        $jarak = 0;
+                    }else if($lat && $lon){
+                        $jarak = $this->distance($lat,$lon,$pegawai->LAT,$pegawai->LON);
+                    }else{
+                        $data = (object) array('status' => 'error', 'message'=>'Pastikan GPS pada perangkat sudah aktif');
+                        return $this->response->setJSON( $data )->setStatusCode(409);
+                    }
 
-                if($jarak > 500){
-                    $data = (object) array('status' => 'error', 'message'=>'Gunakan jaringan Kementerian Agama atau Pastikan Lokasi Anda berada di sekitar Kantor untuk melakukan absensi');
-                    return $this->response->setJSON( $data )->setStatusCode(409);
+                    if($jarak > 500){
+                        $data = (object) array('status' => 'error', 'message'=>'Gunakan jaringan Kementerian Agama atau Pastikan Lokasi Anda berada di sekitar Kantor untuk melakukan absensi');
+                        return $this->response->setJSON( $data )->setStatusCode(409);
+                    }
                 }
             }
         }
