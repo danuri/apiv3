@@ -68,13 +68,13 @@ class Auth extends BaseController
 
 		if( $pegawai )
 		{
-            //$data = $db->getPegawai($u);
+            $data = $db->getPegawai($u);
             
             $jwt = new Jwtx;
 
             $output['status'] = TRUE;
             $output['token'] = $jwt->token($pegawai,$u,$pegawai);
-            $output['user'] = ['id'=>$pegawai->NIP_USER,'name'=>$pegawai->NAMA,'satker_kelola'=>null];
+            $output['user'] = ['id'=>$pegawai->NIP_USER,'name'=>$pegawai->NAMA,'lat'=>$data->LAT,'lon'=>$data->LON];
 
             return $this->response->setJSON( $output );
 
