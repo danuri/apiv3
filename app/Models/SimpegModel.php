@@ -88,7 +88,7 @@ class SimpegModel extends Model
 
   public function updatepassword($nip,$password)
   {
-    $query = $this->db->query("UPDATE TS_USER SET PWD='$password' WHERE NIP='$nip'");
+    $query = $this->db->query("UPDATE TEMP_PEGAWAI_SSO SET PWD='$password' WHERE NIP_USER='$nip'");
 
     return $query;
   }
