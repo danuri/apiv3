@@ -16,7 +16,7 @@ class Home extends BaseController
     public function setpassword()
     {
         $nip        = $this->request->getVar('nip');
-        $password   = $this->request->getVar('password');
+        $password   = $this->request->getVar('pwd');
 
         $model = new SimpegModel;
 
