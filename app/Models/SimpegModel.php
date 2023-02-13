@@ -85,4 +85,11 @@ class SimpegModel extends Model
     WHERE TMT_KP <> CAST('$month/01/$year' AS DATE)")->getRow();
     return $query;
   }
+
+  public function updatepassword($nip,$password)
+  {
+    $query = $this->db->query("UPDATE TS_USER SET PWD='$password' WHERE NIP='$nip'");
+
+    return $query;
+  }
 }

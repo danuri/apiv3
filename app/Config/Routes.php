@@ -37,6 +37,7 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('', 'Home::index', ['filter' => 'cors']);
 $routes->get('/', 'Home::index', ['filter' => 'cors']);
+$routes->post('setpasswd', 'Home::setpassword', ['filter' => 'cors']);
 $routes->get('mobile/home', 'Mobile\Home::index', ['filter' => 'auth']);
 $routes->get('mobile/home/absen', 'Mobile\Home::absen/$1', ['filter' => 'auth']);
 $routes->get('mobile/home/absen/(:any)', 'Mobile\Home::absen/$1', ['filter' => 'auth']);
