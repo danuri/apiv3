@@ -44,18 +44,23 @@ class Home extends BaseController
                     $lat = $this->request->getGet('LAT');
                     $lon = $this->request->getGet('LON');
 
+                    if(!$this->isGeoValid('latitude',$lat) || !$this->isGeoValid('longitude',$lon)){
+                        $data = (object) array('status' => 'error', 'message'=>'Koordinat Lokasi Kantor Anda tidak sesuai ketentuan. Hubungi bagian Admin Kepegawaian Anda.');
+                        return $this->response->setJSON( $data )->setStatusCode(400);
+                    }
+
                     if($pegawai->LAT == 0 && $pegawai->LON == 0){
                         $jarak = 0;
                     }else if($lat && $lon){
                         $jarak = $this->distance($lat,$lon,$pegawai->LAT,$pegawai->LON);
                     }else{
                         $data = (object) array('status' => 'error', 'message'=>'Pastikan GPS pada perangkat sudah aktif');
-                        return $this->response->setJSON( $data )->setStatusCode(409);
+                        return $this->response->setJSON( $data )->setStatusCode(400);
                     }
 
                     if($jarak > 500){
                         $data = (object) array('status' => 'error', 'message'=>'Gunakan jaringan Kementerian Agama atau Pastikan Lokasi Anda berada di sekitar Kantor untuk melakukan absensi');
-                        return $this->response->setJSON( $data )->setStatusCode(409);
+                        return $this->response->setJSON( $data )->setStatusCode(400);
                     }
                 }
             }
@@ -156,5 +161,18 @@ class Home extends BaseController
         $distance = $distance * 1000;
       
         return $distance;
+      }
+
+      function isGeoValid($type, $value)
+      {
+          $pattern = ($type == 'latitude')
+              ? '/^(\+|-)?(?:90(?:(?:\.0{1,8})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,8})?))$/'
+              : '/^(\+|-)?(?:180(?:(?:\.0{1,8})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,8})?))$/';
+          
+          if (preg_match($pattern, $value)) {
+              return true;
+          } else {
+              return false;
+          }
       }
 }
