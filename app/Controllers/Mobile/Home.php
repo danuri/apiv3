@@ -44,7 +44,7 @@ class Home extends BaseController
                     $lat = $this->request->getGet('LAT');
                     $lon = $this->request->getGet('LON');
 
-                    if(!$this->isGeoValid('latitude',$lat) || !$this->isGeoValid('longitude',$lon)){
+                    if(!is_numeric($lat) || !is_numeric($lon)){
                         $data = (object) array('status' => 'error', 'message'=>'Koordinat Lokasi Kantor Anda tidak sesuai ketentuan. Hubungi bagian Admin Kepegawaian Anda.');
                         return $this->response->setJSON( $data )->setStatusCode(400);
                     }
