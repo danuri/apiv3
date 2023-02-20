@@ -46,6 +46,10 @@ $routes->get('mobile/home/absens/(:any)/(:any)', 'Mobile\Home::absens/$1/$2', ['
 $routes->post('mobile/auth/login', 'Mobile\Auth::login', ['filter' => 'cors']);
 $routes->get('mobile/auth/test88', 'Mobile\Auth::test', ['filter' => 'cors']);
 
+$routes->post('mobile/lckh/save', 'Mobile\Lckh::save', ['filter' => 'auth']);
+$routes->get('mobile/lckh/index/(:any)/(:any)', 'Mobile\Lckh::index/$1/$2', ['filter' => 'auth']);
+$routes->get('mobile/lckh/delete/(:any)', 'Mobile\Lckh::delete/$1', ['filter' => 'auth']);
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
