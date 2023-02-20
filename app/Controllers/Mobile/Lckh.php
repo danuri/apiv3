@@ -14,7 +14,7 @@ class Lckh extends BaseController
         $bulan = ($m)?$m:date('m');
 
         $model = new LckhModel;
-        $lckh = $model->query("SELECT * FROM tr_lckh WHERE YEAR(tanggal)='$tahun' AND MONTH(tanggal)='$bulan'");
+        $lckh = $model->query("SELECT * FROM tr_lckh WHERE YEAR(tanggal)='$tahun' AND MONTH(tanggal)='$bulan'")->getResult();
 
         return $this->response->setJSON( $lckh )->setStatusCode(200);
     }
