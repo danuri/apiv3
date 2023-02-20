@@ -48,6 +48,7 @@ $routes->get('mobile/auth/test88', 'Mobile\Auth::test', ['filter' => 'cors']);
 
 $routes->post('mobile/lckh/save', 'Mobile\Lckh::save', ['filter' => 'auth']);
 $routes->get('mobile/lckh/index/(:any)/(:any)', 'Mobile\Lckh::index/$1/$2', ['filter' => 'auth']);
+$routes->get('mobile/lckh/show/(:any)', 'Mobile\Lckh::show/$1', ['filter' => 'auth']);
 $routes->get('mobile/lckh/delete/(:any)', 'Mobile\Lckh::delete/$1', ['filter' => 'auth']);
 
 /*

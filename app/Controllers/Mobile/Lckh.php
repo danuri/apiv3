@@ -70,4 +70,16 @@ class Lckh extends BaseController
         $data = (object) array('status' => 'success', 'message'=>'Data berhasil dihapus.');
         return $this->response->setJSON( $data )->setStatusCode(200);
     }
+
+    public function show($id)
+    {
+        $jwt = new Jwtx;
+        $uid = $jwt->decode();
+        $nip = $uid->username;
+
+        $model = new LckhModel;
+        $find = $model->where(['id'=>$id,'nip'=>$nip])->find();
+
+        return $this->response->setJSON( $find )->setStatusCode(200);
+    }
 }
