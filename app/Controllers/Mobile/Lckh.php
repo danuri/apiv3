@@ -28,7 +28,7 @@ class Lckh extends BaseController
             'kegiatan' => "required",
             'output' => "required",
             ])) {
-                $data = (object) array('status' => 'error', 'message'=>'Pastikan data seudah terisi');
+                $data = (object) array('status' => 'error', 'message'=>'Pastikan data sudah terisi');
                 return $this->response->setJSON( $data )->setStatusCode(200);
             }
 
@@ -53,7 +53,7 @@ class Lckh extends BaseController
         }
 
         $insert = $model->save($data);
-        
+
         $data = (object) array('status' => 'success', 'message'=>'Data berhasil terekam.');
         return $this->response->setJSON( $data )->setStatusCode(200);
     }
@@ -71,14 +71,14 @@ class Lckh extends BaseController
         return $this->response->setJSON( $data )->setStatusCode(200);
     }
 
-    public function show($id)
+    public function view($id)
     {
         $jwt = new Jwtx;
         $uid = $jwt->decode();
         $nip = $uid->username;
 
         $model = new LckhModel;
-        $find = $model->where(['id'=>$id,'nip'=>$nip])->find();
+        $find = $model->where(['id'=>$id,'nip'=>$nip])->first();
 
         return $this->response->setJSON( $find )->setStatusCode(200);
     }
