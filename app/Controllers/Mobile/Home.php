@@ -50,8 +50,8 @@ class Home extends BaseController
                     $forcelat = $db->getRow('TEMP_PEGAWAI_LATLON',array('NIP_BARU'=>$nip));
 
                     if($forcelat){
-                        $plat = $forcelat['LAT'];
-                        $plon = $forcelat['LON'];
+                        $plat = $forcelat->LAT;
+                        $plon = $forcelat->LON;
                     }
 
                     if(!is_numeric($plon)){
