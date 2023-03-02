@@ -47,11 +47,11 @@ class Home extends BaseController
                     $lat = $this->request->getGet('LAT');
                     $lon = $this->request->getGet('LON');
 
-                    $forcelat = (object) $db->getRow('TEMP_PEGAWAI_LATLON',array('NIP_BARU'=>$nip));
+                    $forcelat = $db->getRow('TEMP_PEGAWAI_LATLON',array('NIP_BARU'=>$nip));
 
                     if($forcelat){
-                        $plat = $forcelat->LAT;
-                        $plon = $forcelat->LON;
+                        $plat = $forcelat['LAT'];
+                        $plon = $forcelat['LON'];
                     }
 
                     if(!is_numeric($plon)){
