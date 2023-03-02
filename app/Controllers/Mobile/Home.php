@@ -22,19 +22,22 @@ class Home extends BaseController
         $uid = $jwt->decode();
 
         $db = new SimpegModel;
-        
+
         $nip = $uid->username;
         $pegawai = (object) $db->getPegawai($nip);
-        
+
         $niplama = $pegawai->NIP;
 
         $absendb = new AbsenModel;
-        
+
         $user = $absendb->getRow('USERINFO',['BADGENUMBER'=>$niplama]);
         // $grup = array('21100','21200','21300','21400','21500','21600','21700','21800','21900','22000','23000');
         $kodeleveljab = array('213','216');
         // if (!in_array($pegawai->KODE_GRUP_SATUAN_KERJA, $grup)) // || !in_array($pegawai->KODE_LEVEL_JABATAN,$kodeleveljab)
         // {
+            $plat = $pegawai->LAT;
+            $plon = $pegawai->LON;
+
             if (!in_array($pegawai->KODE_LEVEL_JABATAN,$kodeleveljab))
             {
                 $checkip = $db->getRow('ipsatker',array('ip'=>$ip));
@@ -44,15 +47,22 @@ class Home extends BaseController
                     $lat = $this->request->getGet('LAT');
                     $lon = $this->request->getGet('LON');
 
-                    if(!is_numeric($pegawai->LON)){
+                    $forcelat = (object) $db->getRow('TEMP_PEGAWAI_LATLON',array('NIP_BARU'=>$nip));
+
+                    if($forcelat){
+                        $plat = $forcelat->LAT;
+                        $plon = $forcelat->LON;
+                    }
+
+                    if(!is_numeric($plon)){
                         $data = (object) array('status' => 'error', 'message'=>'Koordinat Lokasi Kantor Anda tidak sesuai ketentuan. Hubungi bagian Admin Kepegawaian Anda.');
                         return $this->response->setJSON( $data )->setStatusCode(400);
                     }
 
-                    if($pegawai->LAT == 0 && $pegawai->LON == 0){
+                    if($plat == 0 && $plon == 0){
                         $jarak = 0;
                     }else if($lat && $lon){
-                        $jarak = $this->distance($lat,$lon,$pegawai->LAT,$pegawai->LON);
+                        $jarak = $this->distance($lat,$lon,$plat,$plon);
                     }else{
                         $data = (object) array('status' => 'error', 'message'=>'Pastikan GPS pada perangkat sudah aktif');
                         return $this->response->setJSON( $data )->setStatusCode(400);
@@ -68,7 +78,7 @@ class Home extends BaseController
 
         date_default_timezone_set('Asia/Jakarta');
         $clock =date('Y-m-d H:i:s');
-        
+
         if($user->TimeZone2 == 1){
             date_default_timezone_set('Asia/Makassar');
             $clock =date('Y-m-d H:i:s');
@@ -86,11 +96,11 @@ class Home extends BaseController
         $absenfrom = 'PUSAKA';
         $date = date('Y-m-d H:i:s');
         $query = $absendb->query("INSERT INTO CHECKINOUT (USERID, CHECKTIME, CHECKTYPE, VERIFYCODE, SENSORID, Memoinfo, WorkCode, sn, UserExtFmt) VALUES ('$user->USERID','$time','$tipe','15','105','$absenfrom','0','3574153900254','1')");
-        
+
         if(!$query){
             $data = (object) array('status' => 'error', 'message' => 'Ada kesalahan, Silahkan ulangi!');
         }
-        
+
         $data = (object) array('status' => 'sucess', 'message'=>'Anda telah absen pada jam '.$date);
 
         return $this->response->setJSON( $data )->setStatusCode(200);
@@ -119,7 +129,7 @@ class Home extends BaseController
     function leave_get($y=false,$status='',$jenis='')
     {
         $this->load->model('presensi_model');
-        
+
         $jwt = new Jwtx;
         $uid = $jwt->decode();
 
@@ -139,7 +149,7 @@ class Home extends BaseController
     {
         if($lat && $lon){
         $data = (object) array('status' => 'success', 'message' => 'Data berhasil disimpan!');
-        
+
         return $this->response->setJSON( $data )->setStatusCode(200);
 
         }else{
@@ -156,10 +166,10 @@ class Home extends BaseController
         $dist = acos($dist);
         $dist = rad2deg($dist);
         $miles = $dist * 60 * 1.1515;
-      
+
         $distance = $miles * 1.609344;
         $distance = $distance * 1000;
-      
+
         return $distance;
       }
 
@@ -168,7 +178,7 @@ class Home extends BaseController
           $pattern = ($type == 'latitude')
               ? '/^(\+|-)?(?:90(?:(?:\.0{1,8})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,8})?))$/'
               : '/^(\+|-)?(?:180(?:(?:\.0{1,8})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,8})?))$/';
-          
+
           if (preg_match($pattern, $value)) {
               return true;
           } else {
