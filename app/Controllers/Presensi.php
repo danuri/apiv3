@@ -40,7 +40,7 @@ class Presensi extends BaseController
     {
       $tahun = ($y)?$y:date('Y');
 
-      $model = new AttModel;
+      $model = new AbsenModel;
       $absens = $model->query_array("exec sp_Absen_List_By_UID @uid='".$nip."', @thn='".$tahun."', @status='".$status."', @jenis='".$jenis."'");
 
       return $this->response->setJSON($absens);
@@ -48,7 +48,7 @@ class Presensi extends BaseController
 
     function ketidakhadirandetail($nip,$id)
     {
-      $model = new AttModel;
+      $model = new AbsenModel;
       $absens = $model->query_array("exec sp_Absen_View_By_ID_UID @uid='".$nip."', @id='".$id."'");
 
       return $this->response->setJSON($absens);
@@ -78,7 +78,7 @@ class Presensi extends BaseController
       $tabsen = new TabsenModel;
       $insert = $tabsen->insert($data);
 
-      $model = new AttModel;
+      $model = new AbsenModel;
       $absens = $model->query("exec sp_Absen_days_insert @absen_id='".$absens."', @Date1='".$start_date."', @Date2='".$end_date."'");
 
       return $this->response->setJSON($absens);
@@ -111,7 +111,7 @@ class Presensi extends BaseController
     {
       $tahun = ($y)?$y:date('Y');
 
-      $model = new AttModel;
+      $model = new AbsenModel;
       $absens = $model->query_array("exec sp_Absen_Adu_List_By_UID @uid='".$nip."', @thn='".$tahun."', @status='".$status."', @jenis='".$jenis."'");
 
       return $this->response->setJSON($absens);
@@ -119,7 +119,7 @@ class Presensi extends BaseController
 
     function pengaduanaddetail($nip,$id)
     {
-      $model = new AttModel;
+      $model = new AbsenModel;
       $absens = $model->query_array("exec sp_Absen_Adu_View_By_UID_ID @uid='".$nip."', @id='".$id."'");
 
       return $this->response->setJSON($absens);
