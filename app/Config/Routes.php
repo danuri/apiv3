@@ -53,8 +53,8 @@ $routes->get('mobile/lckh/delete/(:any)', 'Mobile\Lckh::delete/$1', ['filter' =>
 
 
 $routes->group("presensi", function ($routes) {
-    $routes->get('months/(:any)/(:any)', 'Presensi::months/$1/$2');
-    $routes->get('days/(:num)/(:num)/(:num)', 'Rekapitulasi::days/$1/$2/$3');
+    $routes->get('months/(:num)/(:num)', 'Presensi::months/$1/$2');
+    $routes->get('days/(:num)/(:num)/(:num)', 'Presensi::days/$1/$2/$3');
 });
 /*
  * --------------------------------------------------------------------
