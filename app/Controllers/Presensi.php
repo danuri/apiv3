@@ -19,7 +19,7 @@ class Presensi extends BaseController
       $tahun = ($y)?$y:date('Y');
 
       $model = new AttModel;
-      $absens = (object) $model->query_array("exec sp_Absen_view_per_bulan_by_nip @uid='".$nip."', @thn='".$tahun."'");
+      $absens = $model->query_array("exec sp_Absen_view_per_bulan_by_nip @uid='".$nip."', @thn='".$tahun."'");
 
       return $this->response->setJSON($absens);
     }
