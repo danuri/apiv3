@@ -17,7 +17,7 @@ class Presensi extends BaseController
     {
       $tahun = ($y)?$y:date('Y');
 
-      $model = new AbsenModel;
+      $model = new AttModel;
       $absens = $model->query_array("exec sp_Absen_view_per_bulan_by_nip @uid='".$nip."', @thn='".$tahun."'");
 
       $this->output
