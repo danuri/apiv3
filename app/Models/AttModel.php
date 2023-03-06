@@ -4,13 +4,13 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class AbsenModel extends Model
+class AttModel extends Model
 {
   protected $db;
 
   public function __construct()
   {
-    $this->db = \Config\Database::connect('absen', false);
+    $this->db = \Config\Database::connect('att', false);
 
   }
 

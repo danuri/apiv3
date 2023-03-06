@@ -4,7 +4,7 @@ namespace App\Controllers\Mobile;
 
 use App\Controllers\BaseController;
 use App\Models\SimpegModel;
-use App\Models\AbsenModel;
+use App\Models\AttModel;
 use App\Libraries\Jwtx;
 
 class Home extends BaseController
@@ -28,7 +28,7 @@ class Home extends BaseController
 
         $niplama = $pegawai->NIP;
 
-        $absendb = new AbsenModel;
+        $absendb = new AttModel;
 
         $user = $absendb->getRow('USERINFO',['BADGENUMBER'=>$niplama]);
         // $grup = array('21100','21200','21300','21400','21500','21600','21700','21800','21900','22000','23000');
@@ -120,7 +120,7 @@ class Home extends BaseController
         $pegawai = $db->getPegawai($nip);
         $niplama = $pegawai->NIP;
 
-        $absendb = new AbsenModel;
+        $absendb = new AttModel;
         $absens = $absendb->query("exec sp_absen_view_per_nip @userid='".$niplama."', @bln='".$bulan."', @thn='".$tahun."'")->getResult();
 
         return $this->response->setJSON( $absens )->setStatusCode(200);

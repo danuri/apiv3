@@ -4,7 +4,7 @@ namespace Config;
 
 use CodeIgniter\Database\Config;
 
-/** 
+/**
  * Database Configuration
  */
 class Database extends Config
@@ -56,6 +56,26 @@ class Database extends Config
         'username' => 'sa',
         'password' => 'P@ssw0rd1',
         'database' => 'att2000',
+        'DBDriver' => 'SQLSRV',
+        'DBPrefix' => '',
+        'pConnect' => false,
+        'DBDebug'  => (ENVIRONMENT !== 'production'),
+        'charset'  => 'utf8',
+        'DBCollat' => 'utf8_general_ci',
+        'swapPre'  => '',
+        'encrypt'  => false,
+        'compress' => false,
+        'strictOn' => false,
+        'failover' => [],
+        'port'     => 1433,
+    ];
+
+    public $absen = [
+        'DSN'      => '',
+        'hostname' => '10.1.7.82',
+        'username' => 'sa',
+        'password' => 'P@ssw0rd1',
+        'database' => 'db_absen',
         'DBDriver' => 'SQLSRV',
         'DBPrefix' => '',
         'pConnect' => false,
