@@ -70,6 +70,26 @@ class Database extends Config
         'port'     => 1433,
     ];
 
+    public $absen = [
+        'DSN'      => '',
+        'hostname' => '10.1.7.82',
+        'username' => 'sa',
+        'password' => 'P@ssw0rd1',
+        'database' => 'db_absen',
+        'DBDriver' => 'SQLSRV',
+        'DBPrefix' => '',
+        'pConnect' => false,
+        'DBDebug'  => (ENVIRONMENT !== 'production'),
+        'charset'  => 'utf8',
+        'DBCollat' => 'utf8_general_ci',
+        'swapPre'  => '',
+        'encrypt'  => false,
+        'compress' => false,
+        'strictOn' => false,
+        'failover' => [],
+        'port'     => 1433,
+    ];
+
     /**
      * This database connection is used when
      * running PHPUnit database tests.
