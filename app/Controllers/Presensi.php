@@ -49,7 +49,7 @@ class Presensi extends BaseController
     function ketidakhadirandetail($nip,$id)
     {
       $model = new AbsenModel;
-      $absens = $model->query_array("exec sp_Absen_View_By_ID_UID @uid='".$nip."', @id='".$id."'");
+      $absens = $model->query_row("exec sp_Absen_View_By_ID_UID @uid='".$nip."', @id='".$id."'");
 
       return $this->response->setJSON($absens);
     }
@@ -120,7 +120,7 @@ class Presensi extends BaseController
     function pengaduanaddetail($nip,$id)
     {
       $model = new AbsenModel;
-      $absens = $model->query_array("exec sp_Absen_Adu_View_By_UID_ID @uid='".$nip."', @id='".$id."'");
+      $absens = $model->query_row("exec sp_Absen_Adu_View_By_UID_ID @uid='".$nip."', @id='".$id."'");
 
       return $this->response->setJSON($absens);
     }
