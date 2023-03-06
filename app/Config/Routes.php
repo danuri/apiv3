@@ -51,8 +51,7 @@ $routes->get('mobile/lckh/index/(:any)/(:any)', 'Mobile\Lckh::index/$1/$2', ['fi
 $routes->get('mobile/lckh/view/(:any)', 'Mobile\Lckh::view/$1', ['filter' => 'auth']);
 $routes->get('mobile/lckh/delete/(:any)', 'Mobile\Lckh::delete/$1', ['filter' => 'auth']);
 
-
-$routes->group("presensi", function ($routes) {
+$routes->group('presensi', static function ($routes) {
     $routes->get('months/(:num)/(:num)', 'Presensi::months/$1/$2');
     $routes->get('days/(:num)/(:num)/(:num)', 'Presensi::days/$1/$2/$3');
 });
