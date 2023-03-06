@@ -54,6 +54,18 @@ $routes->get('mobile/lckh/delete/(:any)', 'Mobile\Lckh::delete/$1', ['filter' =>
 $routes->group('presensi', static function ($routes) {
     $routes->get('months/(:num)/(:num)', 'Presensi::months/$1/$2');
     $routes->get('days/(:num)/(:num)/(:num)', 'Presensi::days/$1/$2/$3');
+
+    $routes->get('ketidakhadiran/(:num)/(:num)/(:any)/(:any)', 'Presensi::ketidakhadiran/$1/$2/$3/$4');
+    $routes->get('ketidakhadiran/detail/(:num)/(:num)', 'Presensi::ketidakhadirandetail/$1/$2');
+    $routes->post('ketidakhadiran/add', 'Presensi::ketidakhadiranadd');
+    $routes->get('ketidakhadiran/delete/(:num)/(:num)', 'Presensi::ketidakhadirandelete/$1/$2');
+    $routes->get('ketidakhadiran/send/(:num)/(:num)', 'Presensi::ketidakhadiransend/$1/$2');
+
+    $routes->get('pengaduan/(:num)/(:num)/(:any)/(:any)', 'Presensi::pengaduan/$1/$2/$3/$4');
+    $routes->get('pengaduan/detail/(:num)/(:num)', 'Presensi::pengaduandetail/$1/$2');
+    $routes->post('pengaduan/add', 'Presensi::pengaduanadd');
+    $routes->get('pengaduan/delete/(:num)/(:num)', 'Presensi::pengaduandelete/$1/$2');
+    $routes->get('pengaduan/send/(:num)/(:num)', 'Presensi::pengaduansend/$1/$2');
 });
 /*
  * --------------------------------------------------------------------
