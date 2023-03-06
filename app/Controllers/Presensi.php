@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\SimpegModel;
 use App\Models\AbsenModel;
+use App\Models\AttModel;
 
 class Presensi extends BaseController
 {
