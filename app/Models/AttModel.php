@@ -41,6 +41,12 @@ class AttModel extends Model
     return $query;
   }
 
+  public function query($query)
+  {
+    $query = $this->db->query($query);
+    return $query;
+  }
+
   public function query_row($query)
   {
     $query = $this->db->query($query)->getRow();
