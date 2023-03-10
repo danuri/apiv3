@@ -56,13 +56,12 @@ class Presensi extends BaseController
 
     function ketidakhadiranadd()
     {
-      $nip          = $this->input->post('create_by');
-      $nip      = $this->pegawai_model->getnip($nip)->NIP;
-      $start_date   = $this->input->post('start_date');
-      $end_date     = $this->input->post('end_date');
-      $remark       = $this->input->post('remark');
-      $attachment   = $this->input->post('attachment');
-      $abs_type   = $this->input->post('abs_type');
+      $nip          = $this->request->getVar('create_by');
+      $start_date   = $this->request->getVar('start_date');
+      $end_date     = $this->request->getVar('end_date');
+      $remark       = $this->request->getVar('remark');
+      $attachment   = $this->request->getVar('attachment');
+      $abs_type   = $this->request->getVar('abs_type');
 
       $data = array(
         'create_date' => date('Y-m-d H:i:s'),
@@ -81,7 +80,7 @@ class Presensi extends BaseController
       $model = new AbsenModel;
       $absens = $model->query("exec sp_Absen_days_insert @absen_id='".$absens."', @Date1='".$start_date."', @Date2='".$end_date."'");
 
-      return $this->response->setJSON($absens);
+      return $this->response->setJSON($insert);
     }
 
     function ketidakhadirandelete($nip,$id)
