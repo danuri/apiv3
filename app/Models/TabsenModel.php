@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class TabsenModel extends Model
 {
-    protected $DBGroup          = 'default';
+    protected $DBGroup          = 'absen';
     protected $table            = 't_absen';
     protected $primaryKey       = 'abs_id';
     protected $useAutoIncrement = true;
