@@ -78,7 +78,7 @@ class Presensi extends BaseController
       $insert = $tabsen->insert($data);
 
       $model = new AbsenModel;
-      $absens = $model->query("exec sp_Absen_days_insert @absen_id='".$absens."', @Date1='".$start_date."', @Date2='".$end_date."'");
+      $absens = $model->query("exec sp_Absen_days_insert @absen_id='".$insert."', @Date1='".$start_date."', @Date2='".$end_date."'");
 
       return $this->response->setJSON($insert);
     }
@@ -126,15 +126,15 @@ class Presensi extends BaseController
 
     function pengaduanadd()
     {
-      $nip          = $this->input->post('create_by');
+      $nip          = $this->request->getVar('create_by');
 
       $data = array(
         'create_date' => date('Y-m-d H:i:s'),
         'create_by' => $nip,
-        'tgl_adu' => $this->input->post('tgl_adu'),
-        'adu_type' => $this->input->post('adu_type'),
-        'remark' => $this->input->post('remark'),
-        'attachment' => $this->input->post('attachment'),
+        'tgl_adu' => $this->request->getVar('tgl_adu'),
+        'adu_type' => $this->request->getVar('adu_type'),
+        'remark' => $this->request->getVar('remark'),
+        'attachment' => $this->request->getVar('attachment'),
         'approval_status' => 'STT.A00',
       );
 
