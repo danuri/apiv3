@@ -120,11 +120,10 @@ nb-configuration.xml
 
 # Visual Studio Code
 .vscode/
- 
+
 /results/
 /phpunit*.xml
 /.phpunit.*.cache
 
 app/Config/App.php
-app/Config/Database.php
 app/Config/Database.php
