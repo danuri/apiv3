@@ -6,11 +6,16 @@ use App\Models\SimpegModel;
 class Home extends BaseController
 {
     use ResponseTrait;
-    
+
     public function index()
     {
         // return view('welcome_message');
         return $this->failNotFound('Page Not Found.');
+    }
+
+    public function check()
+    {
+      return $this->respond(['status'=>'online'], 200,'ok');
     }
 
     public function setpassword()
