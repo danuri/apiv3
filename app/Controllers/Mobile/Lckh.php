@@ -13,8 +13,12 @@ class Lckh extends BaseController
         $tahun = ($y)?$y:date('Y');
         $bulan = ($m)?$m:date('m');
 
+        $jwt = new Jwtx;
+        $uid = $jwt->decode();
+        $nip = $uid->username;
+
         $model = new LckhModel;
-        $lckh = $model->query("SELECT * FROM tr_lckh WHERE YEAR(tanggal)='$tahun' AND MONTH(tanggal)='$bulan'")->getResult();
+        $lckh = $model->query("SELECT * FROM tr_lckh WHERE YEAR(tanggal)='$tahun' AND MONTH(tanggal)='$bulan' AND nip='$nip'")->getResult();
 
         return $this->response->setJSON( $lckh )->setStatusCode(200);
     }
