@@ -76,11 +76,21 @@ class Auth extends BaseController
 		{
             $data = $db->getPegawai($u);
 
+            $forcelat = $db->getRow('TEMP_PEGAWAI_LATLON',array('NIP_BARU'=>$u));
+
+            if($forcelat){
+                $lat = $forcelat->LAT;
+                $lon = $forcelat->LON;
+            }else{
+              $lat = $data->LAT;
+              $lon = $data->LON;
+            }
+
             $jwt = new Jwtx;
 
             $output['status'] = TRUE;
             $output['token'] = $jwt->token($pegawai,$u,$pegawai);
-            $output['user'] = ['id'=>$pegawai->NIP_USER,'name'=>$pegawai->NAMA,'satker_kelola'=>null,'lat'=>$data->LAT,'lon'=>$data->LON];
+            $output['user'] = ['id'=>$pegawai->NIP_USER,'name'=>$pegawai->NAMA,'satker_kelola'=>null,'lat'=>$LAT,'lon'=>$LON];
 
             return $this->response->setJSON( $output );
 
