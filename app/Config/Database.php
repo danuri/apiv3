@@ -12,34 +12,28 @@ class Database extends Config
     /**
      * The directory that holds the Migrations
      * and Seeds directories.
-     *
-     * @var string
      */
-    public $filesPath = APPPATH . 'Database' . DIRECTORY_SEPARATOR;
+    public string $filesPath = APPPATH . 'Database' . DIRECTORY_SEPARATOR;
 
     /**
      * Lets you choose which connection group to
      * use if no other is specified.
-     *
-     * @var string
      */
-    public $defaultGroup = 'default';
+    public string $defaultGroup = 'default';
 
     /**
      * The default database connection.
-     *
-     * @var array
      */
-    public $default = [
+    public array $default = [
         'DSN'      => '',
-        'hostname' => '11.22.33.2',
-        'username' => 'sa',
-        'password' => 'P@ssw0rd1',
-        'database' => 'simpeg41',
-        'DBDriver' => 'SQLSRV',
+        'hostname' => 'localhost',
+        'username' => '',
+        'password' => '',
+        'database' => '',
+        'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
-        'DBDebug'  => (ENVIRONMENT !== 'production'),
+        'DBDebug'  => true,
         'charset'  => 'utf8',
         'DBCollat' => 'utf8_general_ci',
         'swapPre'  => '',
@@ -47,19 +41,19 @@ class Database extends Config
         'compress' => false,
         'strictOn' => false,
         'failover' => [],
-        'port'     => 1433,
+        'port'     => 3306,
     ];
 
-    public $att = [
+    public array $att = [
         'DSN'      => '',
-        'hostname' => '10.1.7.82',
-        'username' => 'sa',
-        'password' => 'P@ssw0rd1',
-        'database' => 'att2000',
-        'DBDriver' => 'SQLSRV',
+        'hostname' => 'localhost',
+        'username' => '',
+        'password' => '',
+        'database' => '',
+        'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
-        'DBDebug'  => (ENVIRONMENT !== 'production'),
+        'DBDebug'  => true,
         'charset'  => 'utf8',
         'DBCollat' => 'utf8_general_ci',
         'swapPre'  => '',
@@ -67,19 +61,19 @@ class Database extends Config
         'compress' => false,
         'strictOn' => false,
         'failover' => [],
-        'port'     => 1433,
+        'port'     => 3306,
     ];
 
-    public $absen = [
+    public array $absen = [
         'DSN'      => '',
-        'hostname' => '10.1.7.82',
-        'username' => 'sa',
-        'password' => 'P@ssw0rd1',
-        'database' => 'db_absen',
-        'DBDriver' => 'SQLSRV',
+        'hostname' => 'localhost',
+        'username' => '',
+        'password' => '',
+        'database' => '',
+        'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
-        'DBDebug'  => (ENVIRONMENT !== 'production'),
+        'DBDebug'  => true,
         'charset'  => 'utf8',
         'DBCollat' => 'utf8_general_ci',
         'swapPre'  => '',
@@ -87,16 +81,14 @@ class Database extends Config
         'compress' => false,
         'strictOn' => false,
         'failover' => [],
-        'port'     => 1433,
+        'port'     => 3306,
     ];
 
     /**
      * This database connection is used when
      * running PHPUnit database tests.
-     *
-     * @var array
      */
-    public $tests = [
+    public array $tests = [
         'DSN'         => '',
         'hostname'    => '127.0.0.1',
         'username'    => '',
@@ -105,7 +97,7 @@ class Database extends Config
         'DBDriver'    => 'SQLite3',
         'DBPrefix'    => 'db_',  // Needed to ensure we're working correctly with prefixes live. DO NOT REMOVE FOR CI DEVS
         'pConnect'    => false,
-        'DBDebug'     => (ENVIRONMENT !== 'production'),
+        'DBDebug'     => true,
         'charset'     => 'utf8',
         'DBCollat'    => 'utf8_general_ci',
         'swapPre'     => '',
@@ -115,6 +107,7 @@ class Database extends Config
         'failover'    => [],
         'port'        => 3306,
         'foreignKeys' => true,
+        'busyTimeout' => 1000,
     ];
 
     public function __construct()

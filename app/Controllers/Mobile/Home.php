@@ -121,7 +121,7 @@ class Home extends BaseController
         $niplama = $pegawai->NIP;
 
         $absendb = new AttModel;
-        $absens = $absendb->query("exec sp_absen_view_per_nip @userid='".$niplama."', @bln='".$bulan."', @thn='".$tahun."'")->getResult();
+        $absens = $absendb->query("exec sp_absen_view_per_nip_simple @userid='".$niplama."', @bln='".$bulan."', @thn='".$tahun."'")->getResult();
 
         return $this->response->setJSON( $absens )->setStatusCode(200);
     }

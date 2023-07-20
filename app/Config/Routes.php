@@ -5,12 +5,6 @@ namespace Config;
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
-// Load the system's routing file first, so that the app and ENVIRONMENT
-// can override as needed.
-if (is_file(SYSTEMPATH . 'Config/Routes.php')) {
-    require SYSTEMPATH . 'Config/Routes.php';
-}
-
 /*
  * --------------------------------------------------------------------
  * Router Setup
@@ -68,6 +62,10 @@ $routes->group('presensi', static function ($routes) {
     $routes->get('pengaduan/delete/(:num)/(:num)', 'Presensi::pengaduandelete/$1/$2');
     $routes->get('pengaduan/send/(:num)/(:num)', 'Presensi::pengaduansend/$1/$2');
 });
+
+$routes->get('redis', 'Redis::index');
+$routes->get('redis/read', 'Redis::read');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
