@@ -63,7 +63,7 @@ $routes->group('presensi', static function ($routes) {
     $routes->get('pengaduan/send/(:num)/(:num)', 'Presensi::pengaduansend/$1/$2');
 
 
-    $routes->get('pelaporan/pengaduanapprove/(:num)/(:any)', 'Presensi::pengaduanapprove/$1/$2');
+    $routes->get('pelaporan/pengaduanapprove/(:num)/(:any)', 'Presensi\Pelaporan::pengaduanapprove/$1/$2');
 });
 
 $routes->get('redis', 'Redis::index');
