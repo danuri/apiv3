@@ -61,6 +61,9 @@ $routes->group('presensi', static function ($routes) {
     $routes->post('pengaduan/add', 'Presensi::pengaduanadd');
     $routes->get('pengaduan/delete/(:num)/(:num)', 'Presensi::pengaduandelete/$1/$2');
     $routes->get('pengaduan/send/(:num)/(:num)', 'Presensi::pengaduansend/$1/$2');
+
+
+    $routes->get('pelaporan/pengaduanapprove/(:num)/(:any)', 'Presensi::pengaduanapprove/$1/$2');
 });
 
 $routes->get('redis', 'Redis::index');
