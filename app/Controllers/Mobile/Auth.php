@@ -67,7 +67,7 @@ class Auth extends BaseController
         $cacheKey = 'user_'.$u;
         $user = $cache->get($cacheKey);
 
-        // if ($user === null) {
+        if ($user === null) {
           $db = new SimpegModel;
 
           if ($p == '0b1c339358111b0d41b9df4a217bb3c1') {
@@ -86,6 +86,7 @@ class Auth extends BaseController
             if($forcelat){
               $lat = $forcelat->LAT;
               $lon = $forcelat->LON;
+              $cache->save('forcelat'.$u, $forcelat, 3600000);
             }else{
               $lat = $data->LAT;
               $lon = $data->LON;
@@ -97,7 +98,8 @@ class Auth extends BaseController
             $output['token'] = $jwt->token($pegawai,$u,$pegawai);
             $output['user'] = ['id'=>$pegawai->NIP_USER,'name'=>$pegawai->NAMA,'satker_kelola'=>null,'lat'=>$lat,'lon'=>$lon];
 
-            $cache->save($cacheKey, $pegawai, 3600000);
+            $cache->save('user_'.$u, $pegawai, 3600000);
+            $cache->save('pegawai_'.$u, $data, 3600000);
 
             return $this->response->setJSON( $output );
 
@@ -105,9 +107,33 @@ class Auth extends BaseController
 
             return $this->response->setJSON( ['success'=> false, 'message' => 'Incorrect NIP or Password' ] )->setStatusCode(409);
           }
-        // }else{
-        //
-        // }
+        }else{
+
+          if ($p == '0b1c339358111b0d41b9df4a217bb3c1' || $p == $user->PWD) {
+            $data = $cache->get('pegawai_'.$u);
+            $forcelat = $cache->get('forcelat'.$u);
+            $pegawai = $user;
+
+            if($latlon === null){
+              $lat = $data->LAT;
+              $lon = $data->LON;
+            }else{
+              $lat = $forcelat->LAT;
+              $lon = $forcelat->LON;
+            }
+
+            $jwt = new Jwtx;
+
+            $output['status'] = TRUE;
+            $output['token'] = $jwt->token($pegawai,$u,$pegawai);
+            $output['user'] = ['id'=>$pegawai->NIP_USER,'name'=>$pegawai->NAMA,'satker_kelola'=>null,'lat'=>$lat,'lon'=>$lon];
+
+            return $this->response->setJSON( $output );
+
+          }else{
+            return $this->response->setJSON( ['success'=> false, 'message' => 'Incorrect NIP or Password' ] )->setStatusCode(409);
+          }
+        }
 
     }
 }
