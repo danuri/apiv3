@@ -64,7 +64,7 @@ class Auth extends BaseController
         $p = $p2.$p1;
 
         $cache = \Config\Services::cache();
-        $cacheKey = 'user_'.$nip;
+        $cacheKey = 'user_'.$u;
         $user = $cache->get($cacheKey);
 
         // if ($user === null) {
