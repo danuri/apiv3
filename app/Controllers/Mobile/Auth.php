@@ -5,6 +5,7 @@ namespace App\Controllers\Mobile;
 use App\Controllers\BaseController;
 use App\Models\SimpegModel;
 use App\Libraries\Jwtx;
+use CodeIgniter\Cache\Cache;
 
 class Auth extends BaseController
 {
