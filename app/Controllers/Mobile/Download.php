@@ -4,6 +4,7 @@ namespace App\Controllers\Mobile;
 
 use App\Controllers\BaseController;
 use App\Libraries\Jwtx;
+use App\Models\DownloadModel;;
 
 class Download extends BaseController
 {

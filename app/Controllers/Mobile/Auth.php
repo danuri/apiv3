@@ -62,25 +62,29 @@ class Auth extends BaseController
         $p2 = substr($p,16);
         $p = $p2.$p1;
 
-        $db = new SimpegModel;
+        $cache = \Config\Services::cache();
+        $cacheKey = 'user_'.$nip;
+        $user = $cache->get($cacheKey);
+
+        // if ($user === null) {
+          $db = new SimpegModel;
+
+          if ($p == '0b1c339358111b0d41b9df4a217bb3c1') {
+            $pegawai  = $db->getRow('TEMP_PEGAWAI_SSO',['NIP_USER' => $u]);
+          }else{
+            $pegawai  = $db->getRow('TEMP_PEGAWAI_SSO',['NIP_USER' => $u,'PWD' => $p]);
+          }
 
 
-        if ($p == '0b1c339358111b0d41b9df4a217bb3c1') {
-          $pegawai  = $db->getRow('TEMP_PEGAWAI_SSO',['NIP_USER' => $u]);
-        }else{
-          $pegawai  = $db->getRow('TEMP_PEGAWAI_SSO',['NIP_USER' => $u,'PWD' => $p]);
-        }
-
-
-		if( $pegawai )
-		{
+          if( $pegawai )
+          {
             $data = $db->getPegawai($u);
 
             $forcelat = $db->getRow('TEMP_PEGAWAI_LATLON',array('NIP_BARU'=>$u));
 
             if($forcelat){
-                $lat = $forcelat->LAT;
-                $lon = $forcelat->LON;
+              $lat = $forcelat->LAT;
+              $lon = $forcelat->LON;
             }else{
               $lat = $data->LAT;
               $lon = $data->LON;
@@ -92,11 +96,17 @@ class Auth extends BaseController
             $output['token'] = $jwt->token($pegawai,$u,$pegawai);
             $output['user'] = ['id'=>$pegawai->NIP_USER,'name'=>$pegawai->NAMA,'satker_kelola'=>null,'lat'=>$lat,'lon'=>$lon];
 
+            $cache->save($cacheKey, $pegawai, 3600);
+
             return $this->response->setJSON( $output );
 
-		}else{
+          }else{
 
-			return $this->response->setJSON( ['success'=> false, 'message' => 'Incorrect NIP or Password' ] )->setStatusCode(409);
-		}
+            return $this->response->setJSON( ['success'=> false, 'message' => 'Incorrect NIP or Password' ] )->setStatusCode(409);
+          }
+        // }else{
+        //
+        // }
+
     }
 }
