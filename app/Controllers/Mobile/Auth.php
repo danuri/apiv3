@@ -114,7 +114,7 @@ class Auth extends BaseController
             $forcelat = $cache->get('forcelat'.$u);
             $pegawai = $user;
 
-            if($latlon === null){
+            if($forcelat === null){
               $lat = $data->LAT;
               $lon = $data->LON;
             }else{
