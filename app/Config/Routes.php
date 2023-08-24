@@ -67,7 +67,10 @@ $routes->group('presensi', static function ($routes) {
 });
 
 $routes->get('redis', 'Redis::index');
-$routes->get('redis/read', 'Redis::read');
+$routes->get('redis/updatepegawai/(:any)', 'Redis::updatepegawai/$1');
+$routes->get('redis/updateuser/(:any)', 'Redis::updateuser/$1');
+$routes->get('redis/updatelatlon/(:any)', 'Redis::updatelatlon/$1');
+$routes->get('redis/deletelatlon/(:any)', 'Redis::deletelatlon/$1');
 
 /*
  * --------------------------------------------------------------------
