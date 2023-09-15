@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class LckhModel extends Model
 {
-    protected $DBGroup          = 'default';
+    protected $DBGroup          = 'presonline';
     protected $table            = 'tr_lckh';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
