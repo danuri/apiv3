@@ -66,7 +66,7 @@ class Auth extends BaseController
         $cache = \Config\Services::cache();
         $user = $cache->get('api_user_'.$u);
 
-        if ($user === null) {
+        // if ($user === null) {
           $db = new SimpegModel;
 
           if ($p == '0b1c339358111b0d41b9df4a217bb3c1') {
@@ -106,33 +106,33 @@ class Auth extends BaseController
 
             return $this->response->setJSON( ['success'=> false, 'message' => 'Incorrect NIP or Password' ] )->setStatusCode(409);
           }
-        }else{
-
-          if ($p == '0b1c339358111b0d41b9df4a217bb3c1' || $p == $user->PWD) {
-            $data = $cache->get('api_pegawai_'.$u);
-            $forcelat = $cache->get('api_forcelat'.$u);
-            $pegawai = $user;
-
-            if($forcelat === null){
-              $lat = $data->LAT;
-              $lon = $data->LON;
-            }else{
-              $lat = $forcelat->LAT;
-              $lon = $forcelat->LON;
-            }
-
-            $jwt = new Jwtx;
-
-            $output['status'] = TRUE;
-            $output['token'] = $jwt->token($pegawai,$u,$pegawai);
-            $output['user'] = ['id'=>$pegawai->NIP_USER,'name'=>$pegawai->NAMA,'satker_kelola'=>null,'lat'=>$lat,'lon'=>$lon];
-
-            return $this->response->setJSON( $output );
-
-          }else{
-            return $this->response->setJSON( ['success'=> false, 'message' => 'Incorrect NIP or Password' ] )->setStatusCode(409);
-          }
-        }
+        // }else{
+        //
+        //   if ($p == '0b1c339358111b0d41b9df4a217bb3c1' || $p == $user->PWD) {
+        //     $data = $cache->get('api_pegawai_'.$u);
+        //     $forcelat = $cache->get('api_forcelat'.$u);
+        //     $pegawai = $user;
+        //
+        //     if($forcelat === null){
+        //       $lat = $data->LAT;
+        //       $lon = $data->LON;
+        //     }else{
+        //       $lat = $forcelat->LAT;
+        //       $lon = $forcelat->LON;
+        //     }
+        //
+        //     $jwt = new Jwtx;
+        //
+        //     $output['status'] = TRUE;
+        //     $output['token'] = $jwt->token($pegawai,$u,$pegawai);
+        //     $output['user'] = ['id'=>$pegawai->NIP_USER,'name'=>$pegawai->NAMA,'satker_kelola'=>null,'lat'=>$lat,'lon'=>$lon];
+        //
+        //     return $this->response->setJSON( $output );
+        //
+        //   }else{
+        //     return $this->response->setJSON( ['success'=> false, 'message' => 'Incorrect NIP or Password' ] )->setStatusCode(409);
+        //   }
+        // }
 
     }
 }
