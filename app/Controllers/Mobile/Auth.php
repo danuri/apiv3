@@ -118,6 +118,8 @@ class Auth extends BaseController
             }else{
               $db = new SimpegModel;
               $data = $db->getPegawai($u);
+
+              $cache->save('api_pegawai_'.$u, $data, 3600000);
             }
 
             if($forcelat === null){
