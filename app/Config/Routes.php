@@ -67,6 +67,7 @@ $routes->group('presensi', static function ($routes) {
 });
 
 $routes->group('converter', static function ($routes) {
+    $routes->get('', 'Converter::index');
     $routes->get('docxtopdf', 'Converter::docxtopdf');
 });
 
