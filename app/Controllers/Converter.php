@@ -13,7 +13,8 @@ class Converter extends BaseController
     {
       // $process = new Process(['ls', '-lsa']);
       $fname = 'test.docx';
-      $process = new Process(['libreoffice', '--headless','--convert-to', 'pdf:writer_pdf_Export','--outdir', 'pdf/', $fname]);
+      // $process = new Process(['libreoffice', '--headless','--convert-to', 'pdf:writer_pdf_Export','--outdir', 'pdf/', $fname]);
+      $process = new Process(['whoami']);
       $process->run();
 
       if (!$process->isSuccessful()) {
