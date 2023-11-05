@@ -66,6 +66,10 @@ $routes->group('presensi', static function ($routes) {
     $routes->get('pelaporan/pengaduanapprove/(:num)/(:any)', 'Presensi\Pelaporan::pengaduanapprove/$1/$2');
 });
 
+$routes->group('converter', static function ($routes) {
+    $routes->get('docxtopdf', 'Converter::docxtopdf');
+});
+
 $routes->get('redis', 'Redis::index');
 $routes->get('redis/updatepegawai/(:any)', 'Redis::updatepegawai/$1');
 $routes->get('redis/updateuser/(:any)', 'Redis::updateuser/$1');
