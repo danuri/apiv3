@@ -15,7 +15,7 @@ class Converter extends BaseController
       $fname = '/home/web/apiv3/public/test.docx';
       $outdir = '/home/web/apiv3/public/pdf/';
 
-      $process = new Process(['libreoffice', '--headless','--convert-to', 'pdf:writer_pdf_Export','--outdir', $outdir, $fname]);
+      $process = new Process(['libreoffice', '--headless','--convert-to', 'pdf:writer_pdf_Export','--outdir', $outdir, $fname],null,['HOME'=>'/tmp']);
       $process->run();
 
       if (!$process->isSuccessful()) {
