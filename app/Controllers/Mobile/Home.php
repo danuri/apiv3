@@ -5,6 +5,7 @@ namespace App\Controllers\Mobile;
 use App\Controllers\BaseController;
 use App\Models\SimpegModel;
 use App\Models\AttModel;
+use App\Models\CheckLogModel;
 use App\Libraries\Jwtx;
 
 class Home extends BaseController
@@ -96,6 +97,14 @@ class Home extends BaseController
         $absenfrom = 'PUSAKA';
         $date = date('Y-m-d H:i:s');
         $query = $absendb->query("INSERT INTO CHECKINOUT (USERID, CHECKTIME, CHECKTYPE, VERIFYCODE, SENSORID, Memoinfo, WorkCode, sn, UserExtFmt) VALUES ('$user->USERID','$time','$tipe','15','105','$absenfrom','0','3574153900254','1')");
+
+        $checklog = new CheckLogModel;
+        $localog = $checklog->insert([
+          'nip' => $nip,
+          'lat' => $lat,
+          'lon' => $lon,
+          'ip' => $ip,
+        ]);
 
         if(!$query){
             $data = (object) array('status' => 'error', 'message' => 'Ada kesalahan, Silahkan ulangi!');
