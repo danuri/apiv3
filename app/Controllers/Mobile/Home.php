@@ -39,14 +39,14 @@ class Home extends BaseController
             $plat = $pegawai->LAT;
             $plon = $pegawai->LON;
 
+            $lat = $this->request->getGet('LAT');
+            $lon = $this->request->getGet('LON');
+
             // if (!in_array($pegawai->KODE_LEVEL_JABATAN,$kodeleveljab))
             // {
                 $checkip = $db->getRow('ipsatker',array('ip'=>$ip));
 
                 if(!$checkip){
-
-                    $lat = $this->request->getGet('LAT');
-                    $lon = $this->request->getGet('LON');
 
                     $forcelat = $db->getRow('TEMP_PEGAWAI_LATLON',array('NIP_BARU'=>$nip));
 
