@@ -14,7 +14,7 @@ class CheckLogModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nip','lat','lon','ip'];
+    protected $allowedFields    = ['nip','lat','lon','ip','kode_satker','keterangan'];
 
     // Dates
     protected $useTimestamps = true;
