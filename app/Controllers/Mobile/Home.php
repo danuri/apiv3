@@ -104,6 +104,7 @@ class Home extends BaseController
           'lat' => $lat,
           'lon' => $lon,
           'ip' => $ip,
+          'kode_satker' => $pegawai->KODE_SATUAN_KERJA,
         ]);
 
         if(!$query){
