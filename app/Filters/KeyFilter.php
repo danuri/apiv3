@@ -6,7 +6,7 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class CorsFilter implements FilterInterface
+class KeyFilter implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -25,20 +25,23 @@ class CorsFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-      header('Access-Control-Allow-Origin: *');
-  		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-  		header("Access-Control-Allow-Credentials: true");
-  		header("Access-Control-Max-Age: 86400");
-      header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Authorization");
 
-
-		  if ( $request->getMethod() == 'options')
-      {
-  			$response = service('response');
-        $response->setJSON(['method' => 'OPTIONS']);
-        return $response;
-  			die();
+      if (!$request->hasHeader('gate-key')) {
+          $response = service('response');
+          $response->setJSON(['status'=>'error','message'=>'No Key']);
+          $response->setStatusCode(401);
+          return $response;
       }
+
+      $gkey = $request->header('gate-key')->getValue();
+  		if($gkey != '8fa0559eac3de95fc4f07cff8e9c1ed882d02542')
+  		{
+  			$response = service('response');
+        $response->setJSON(['status'=>'error','message'=>'Invalid Key']);
+        $response->setStatusCode(401);
+        return $response;
+  		}
+
     }
 
     /**

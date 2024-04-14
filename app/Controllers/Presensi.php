@@ -36,6 +36,24 @@ class Presensi extends BaseController
       return $this->response->setJSON($absens);
     }
 
+    public function tukin($nip,$tahun)
+    {
+      $model = new AttModel;
+
+      $absens = $model->tukin($nip,$tahun);
+
+      return $this->response->setJSON($absens);
+    }
+
+    public function tukin($nip,$tahun)
+    {
+      $model = new AttModel;
+
+      $absens = $model->MonthPegawai($uangmakan,$tahun);
+
+      return $this->response->setJSON($absens);
+    }
+
     function ketidakhadiran($nip,$y=false,$status='',$jenis='')
     {
       $tahun = ($y)?$y:date('Y');

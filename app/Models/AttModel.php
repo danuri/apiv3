@@ -91,4 +91,20 @@ class AttModel extends Model
     WHERE TMT_KP <> CAST('$month/01/$year' AS DATE)")->getRow();
     return $query;
   }
+
+  function tukin($nip,$y=false)
+  {
+    $tahun = ($y)?$y:date('Y');
+
+    $query = $this->db->query("exec sp_absen_Tukin_view_per_bln_by_nip @userid='".$nip."', @bln='01', @thn='".$tahun."'")->getResult();
+
+    return $query;
+  }
+
+  public function MonthPegawai($nip,$tahun)
+  {
+    $query = $this->db->query("exec sp_Absen_view_per_bulan_by_nip @thn='".$tahun."', @uid='".$nip."'")->getResult();
+
+    return $query;
+  }
 }

@@ -60,10 +60,10 @@ class Home extends BaseController
                         return $this->response->setJSON( $data )->setStatusCode(400);
                     }
 
-                    // Acara HAB 2024
-                    // $plat = 0;
-                    // $plon = 0;
-                    // Acara HAB 2024
+                    // Buka akses Koordinat
+                    $plat = 0;
+                    $plon = 0;
+                    // Buka akses Koordinat
 
                     if($plat == 0 && $plon == 0){
                         $jarak = 0;

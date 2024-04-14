@@ -6,8 +6,8 @@ use App\Controllers\BaseController;
 
 class Absen extends BaseController
 {
-    public function index()
+    public function index($nip,$y=false,$m=false)
     {
-        //
+      
     }
 }
