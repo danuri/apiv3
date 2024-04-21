@@ -61,8 +61,8 @@ class Home extends BaseController
                     }
 
                     // Buka akses Koordinat
-                    $plat = 0;
-                    $plon = 0;
+                    // $plat = 0;
+                    // $plon = 0;
                     // Buka akses Koordinat
 
                     if($plat == 0 && $plon == 0){
