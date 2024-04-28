@@ -103,14 +103,14 @@ class Home extends BaseController
         $date = date('Y-m-d H:i:s');
         $query = $absendb->query("INSERT INTO CHECKINOUT (USERID, CHECKTIME, CHECKTYPE, VERIFYCODE, SENSORID, Memoinfo, WorkCode, sn, UserExtFmt) VALUES ('$user->USERID','$time','$tipe','15','105','$absenfrom','0','3574153900254','1')");
 
-        // $checklog = new CheckLogModel;
-        // $localog = $checklog->insert([
-        //   'nip' => $nip,
-        //   'lat' => $lat,
-        //   'lon' => $lon,
-        //   'ip' => $ip,
-        //   'kode_satker' => $pegawai->KODE_SATUAN_KERJA,
-        // ]);
+        $checklog = new CheckLogModel;
+        $localog = $checklog->insert([
+          'nip' => $nip,
+          'lat' => $lat,
+          'lon' => $lon,
+          'ip' => $ip,
+          'kode_satker' => $pegawai->KODE_SATUAN_KERJA,
+        ]);
 
         if(!$query){
             $data = (object) array('status' => 'error', 'message' => 'Ada kesalahan, Silahkan ulangi!');
