@@ -10,7 +10,7 @@ class Home extends BaseController
     public function index()
     {
         // return view('welcome_message');
-        return $this->failNotFound('Page Not Found.');
+        return $this->failNotFound('Page Not Found. '.date('Y-m-d H:i:s'));
     }
 
     public function check()

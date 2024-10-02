@@ -46,6 +46,9 @@ class Home extends BaseController
             // {
                 $checkip = $db->getRow('ipsatker',array('ip'=>$ip));
 
+                // Disable non Office Wifi
+                // End Disable non Office Wifi
+
                 if(!$checkip){
 
                     $forcelat = $db->getRow('TEMP_PEGAWAI_LATLON',array('NIP_BARU'=>$nip));
@@ -116,7 +119,7 @@ class Home extends BaseController
             $data = (object) array('status' => 'error', 'message' => 'Ada kesalahan, Silahkan ulangi!');
         }
 
-        $data = (object) array('status' => 'sucess', 'message'=>'Anda telah absen pada jam '.$date);
+        $data = (object) array('status' => 'sucess', 'message'=>'Anda telah melakukan presensi pada jam '.$date);
 
         return $this->response->setJSON( $data )->setStatusCode(200);
     }
@@ -200,4 +203,9 @@ class Home extends BaseController
               return false;
           }
       }
+
+    public function profil()
+    {
+      // code...
+    }
 }
