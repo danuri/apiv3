@@ -55,7 +55,7 @@ class Jwtx {
             'username' => $u,
             'niplama' => $data->NIP,
             'satker' => $data->SATKER_1,
-            'kode_satker' => $data->KODE_SATKER_1,
+            'kode_satker' => $data->KODE_SATUAN_KERJA,
             'satker_kelola' => $data->SATKER_KELOLA,
             'name' => $pegawai->NAMA,
             'lat' => $lat,
