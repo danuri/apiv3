@@ -94,7 +94,7 @@ class Auth extends BaseController
             $jwt = new Jwtx;
 
             $output['status'] = TRUE;
-            $output['token'] = $jwt->token($u,$pegawai,$lat,$lon);
+            $output['token'] = $jwt->token($u,$pegawai,$data,$lat,$lon);
             $output['user'] = ['id'=>$pegawai->NIP_USER,'name'=>$pegawai->NAMA,'satker_kelola'=>null,'lat'=>$lat,'lon'=>$lon];
 
             $cache->save('api_user_'.$u, $pegawai, 3600000);
@@ -133,7 +133,7 @@ class Auth extends BaseController
             $jwt = new Jwtx;
 
             $output['status'] = TRUE;
-            $output['token'] = $jwt->token($u,$pegawai,$lat,$lon);
+            $output['token'] = $jwt->token($u,$pegawai,$data,$lat,$lon);
             $output['user'] = ['id'=>$pegawai->NIP_USER,'name'=>$pegawai->NAMA,'satker_kelola'=>null,'lat'=>$lat,'lon'=>$lon];
 
             return $this->response->setJSON( $output );
