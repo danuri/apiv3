@@ -49,7 +49,7 @@ class Jwtx {
         return $this;
     }
 
-    public function token($pegawai,$u,$data,$lat,$lon)
+    public function token($u,$data,$lat,$lon)
     {
         $payload = [
             'username' => $u,
@@ -58,7 +58,7 @@ class Jwtx {
             'satker_kelola' => $data->SATKER_KELOLA,
             'lat' => $lat,
             'lon' => $lon,
-            'name' => $pegawai->NAMA,
+            'name' => $data->NAMA,
             'iss' => $this->iss,
             'iat' => $this->iat,
             'exp' => $this->exp,
