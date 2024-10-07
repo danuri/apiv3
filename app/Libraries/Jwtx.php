@@ -62,14 +62,14 @@ class Jwtx {
             'exp' => $this->exp,
             'nbf' => $this->nbf,
             'jti' => $this->jti
-        ];
+        ];            
 
         return JWT::encode($payload, $this->key, 'HS256');
     }
 
     public function parse($token)
     {
-
+    
         $bearerToken = $this->getBearerToken( $token );
         if( !$bearerToken ) return ['success' => false, 'message' => 'Token Invalid'];
 
@@ -81,7 +81,7 @@ class Jwtx {
 
             return ['success' => false, 'message' => $e->getMessage()];
         }
-
+        
     }
 
     public function decode()
@@ -115,5 +115,5 @@ class Jwtx {
 
         return $url;
     }
-
+    
 }
