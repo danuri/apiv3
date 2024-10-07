@@ -49,27 +49,29 @@ class Jwtx {
         return $this;
     }
 
-    public function token($pegawai,$u,$data)
+    public function token($pegawai,$u,$data,$lat,$lon)
     {
         $payload = [
             'username' => $u,
             'satker' => $data->SATKER_1,
             'kode_satker' => $data->KODE_SATKER_1,
             'satker_kelola' => $data->SATKER_KELOLA,
+            'lat' => $lat,
+            'lon' => $lon,
             'name' => $pegawai->NAMA,
             'iss' => $this->iss,
             'iat' => $this->iat,
             'exp' => $this->exp,
             'nbf' => $this->nbf,
             'jti' => $this->jti
-        ];            
+        ];
 
         return JWT::encode($payload, $this->key, 'HS256');
     }
 
     public function parse($token)
     {
-    
+
         $bearerToken = $this->getBearerToken( $token );
         if( !$bearerToken ) return ['success' => false, 'message' => 'Token Invalid'];
 
@@ -81,7 +83,7 @@ class Jwtx {
 
             return ['success' => false, 'message' => $e->getMessage()];
         }
-        
+
     }
 
     public function decode()
@@ -115,5 +117,5 @@ class Jwtx {
 
         return $url;
     }
-    
+
 }
