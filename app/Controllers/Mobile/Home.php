@@ -27,7 +27,8 @@ class Home extends BaseController
         $nip = $uid->username;
         // $pegawai = (object) $db->getPegawai($nip);
 
-        $niplama = $pegawai->NIP;
+        // $niplama = $pegawai->NIP;
+        $niplama = $uid->niplama;
 
         $absendb = new AttModel;
 
