@@ -25,7 +25,7 @@ class Home extends BaseController
         $db = new SimpegModel;
 
         $nip = $uid->username;
-        $pegawai = (object) $db->getPegawai($nip);
+        // $pegawai = (object) $db->getPegawai($nip);
 
         $niplama = $pegawai->NIP;
 
@@ -36,8 +36,10 @@ class Home extends BaseController
         // $kodeleveljab = array('213','216');
         // if (!in_array($pegawai->KODE_GRUP_SATUAN_KERJA, $grup)) // || !in_array($pegawai->KODE_LEVEL_JABATAN,$kodeleveljab)
         // {
-            $plat = $pegawai->LAT;
-            $plon = $pegawai->LON;
+            // $plat = $pegawai->LAT;
+            // $plon = $pegawai->LON;
+            $plat = $uid->lat;
+            $plon = $uid->lon;
 
             $lat = $this->request->getGet('LAT');
             $lon = $this->request->getGet('LON');
@@ -112,7 +114,8 @@ class Home extends BaseController
           'lat' => $lat,
           'lon' => $lon,
           'ip' => $ip,
-          'kode_satker' => $pegawai->KODE_SATUAN_KERJA,
+          // 'kode_satker' => $pegawai->KODE_SATUAN_KERJA,
+          'kode_satker' => $uid->kode_satker,
         ]);
 
         if(!$query){
