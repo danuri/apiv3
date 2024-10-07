@@ -133,7 +133,7 @@ class Auth extends BaseController
             $jwt = new Jwtx;
 
             $output['status'] = TRUE;
-            $output['token'] = $jwt->token($u,$pegawai,$data,$lat,$lon);
+            $output['token'] = $jwt->token($u,$data,$data,$lat,$lon);
             $output['user'] = ['id'=>$pegawai->NIP_USER,'name'=>$pegawai->NAMA,'satker_kelola'=>null,'lat'=>$lat,'lon'=>$lon];
 
             return $this->response->setJSON( $output );
