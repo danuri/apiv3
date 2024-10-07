@@ -53,7 +53,7 @@ class Jwtx {
     {
         $payload = [
             'username' => $u,
-            'niplama' => $pegawai->NIP,
+            'niplama' => $data->NIP,
             'satker' => $data->SATKER_1,
             'kode_satker' => $data->KODE_SATKER_1,
             'satker_kelola' => $data->SATKER_KELOLA,
