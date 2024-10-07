@@ -54,12 +54,13 @@ class Home extends BaseController
 
                 if(!$checkip){
 
-                    $forcelat = $db->getRow('TEMP_PEGAWAI_LATLON',array('NIP_BARU'=>$nip));
-
-                    if($forcelat){
-                        $plat = $forcelat->LAT;
-                        $plon = $forcelat->LON;
-                    }
+                    // ## Kayaknya di Auth udah define Force deh
+                    // $forcelat = $db->getRow('TEMP_PEGAWAI_LATLON',array('NIP_BARU'=>$nip));
+                    //
+                    // if($forcelat){
+                    //     $plat = $forcelat->LAT;
+                    //     $plon = $forcelat->LON;
+                    // }
 
                     if(!is_numeric($plon)){
                         $data = (object) array('status' => 'error', 'message'=>'Koordinat Lokasi Kantor Anda tidak sesuai ketentuan. Hubungi bagian Admin Kepegawaian Anda.');
