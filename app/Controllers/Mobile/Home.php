@@ -47,10 +47,11 @@ class Home extends BaseController
 
             // if (!in_array($pegawai->KODE_LEVEL_JABATAN,$kodeleveljab))
             // {
-                $checkip = $db->getRow('ipsatker',array('ip'=>$ip));
+                // $checkip = $db->getRow('ipsatker',array('ip'=>$ip));
 
-                // Disable non Office Wifi
-                // End Disable non Office Wifi
+                // Loss Absen
+                $checkip = true;
+                // End Loss Absen
 
                 if(!$checkip){
 
