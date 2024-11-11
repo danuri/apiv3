@@ -50,7 +50,7 @@ class Home extends BaseController
                 $checkip = $db->getRow('ipsatker',array('ip'=>$ip));
 
                 // Loss Absen
-                $checkip = true;
+                // $checkip = true;
                 // End Loss Absen
 
                 if(!$checkip){
