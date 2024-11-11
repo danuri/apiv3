@@ -104,7 +104,7 @@ class Auth extends BaseController
 
           }else{
 
-            return $this->response->setJSON( ['success'=> false, 'message' => 'Incorrect NIP or Password' ] )->setStatusCode(409);
+            return $this->response->setJSON( ['success'=> false, 'message' => 'NIP atau Password tidak sesuai' ] )->setStatusCode(409);
           }
         }else{
 
@@ -139,7 +139,7 @@ class Auth extends BaseController
             return $this->response->setJSON( $output );
 
           }else{
-            return $this->response->setJSON( ['success'=> false, 'message' => 'Incorrect NIP or Password' ] )->setStatusCode(409);
+            return $this->response->setJSON( ['success'=> false, 'message' => 'NIP atau Password tidak sesuai' ] )->setStatusCode(409);
           }
         }
 

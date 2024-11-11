@@ -47,7 +47,7 @@ class Home extends BaseController
 
             // if (!in_array($pegawai->KODE_LEVEL_JABATAN,$kodeleveljab))
             // {
-                // $checkip = $db->getRow('ipsatker',array('ip'=>$ip));
+                $checkip = $db->getRow('ipsatker',array('ip'=>$ip));
 
                 // Loss Absen
                 $checkip = true;
@@ -110,6 +110,9 @@ class Home extends BaseController
         $absenfrom = 'PUSAKA';
         $date = date('Y-m-d H:i:s');
         $query = $absendb->query("INSERT INTO CHECKINOUT (USERID, CHECKTIME, CHECKTYPE, VERIFYCODE, SENSORID, Memoinfo, WorkCode, sn, UserExtFmt) VALUES ('$user->USERID','$time','$tipe','15','105','$absenfrom','0','3574153900254','1')");
+
+        // $absendb43 = new Att43Model;
+        // $query43 = $absendb43->query("INSERT INTO CHECKINOUT (USERID, CHECKTIME, CHECKTYPE, VERIFYCODE, SENSORID, Memoinfo, WorkCode, sn, UserExtFmt) VALUES ('$user->USERID','$time','$tipe','15','105','$absenfrom','0','3574153900254','1')");
 
         $checklog = new CheckLogModel;
         $localog = $checklog->insert([
