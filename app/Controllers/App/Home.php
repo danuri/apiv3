@@ -14,11 +14,11 @@ class Home extends BaseController
   {
       $gkey = $this->request->header('app-key');
 
-      print_r($gkey);
-      return false;
+      // print_r($gkey);
+      // return $gkey;
 
-      if($gkey != '8fa0559eac3de95fc4f07cff8e9c1ed882d02542'){
-        // return $this->response->setJSON(['status'=>'error','message'=>'Invalid Key!']);
+      if($gkey==null||$gkey->getValue() != '8fa0559eac3de95fc4f07cff8e9c1ed882d02542'){
+        return $this->response->setJSON(['status'=>'error','message'=>'Invalid Key!']);
       }
 
       $tahun = ($y)?$y:date('Y');
