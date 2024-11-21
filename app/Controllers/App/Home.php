@@ -12,6 +12,12 @@ class Home extends BaseController
 
   function absens($nip,$y,$m)
   {
+      $gkey = $this->request->header('app-key')->getValue();
+
+      if($gkey != '8fa0559eac3de95fc4f07cff8e9c1ed882d02542'){
+        return $this->response->setJSON(['status'=>'error','message'=>'Invalid Key!']);
+      }
+
       $tahun = ($y)?$y:date('Y');
       $bulan = ($m)?$m:date('m');
 
