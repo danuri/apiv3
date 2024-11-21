@@ -75,7 +75,6 @@ class Auth extends BaseController
             $pegawai  = $db->getRow('TEMP_PEGAWAI_SSO',['NIP_USER' => $u,'PWD' => $p]);
           }
 
-
           if( $pegawai )
           {
             $data = $db->getPegawai($u);
