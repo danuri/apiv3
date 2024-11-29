@@ -62,7 +62,9 @@ class Redis extends BaseController
 
       $db = new SimpegModel;
       $forcelat = $db->getRow('TEMP_PEGAWAI_LATLON',array('NIP_BARU'=>$nip));
-      $cache->save('api_forcelat'.$nip, $forcelat, 3600000);
+      if ($forcelat) {
+        $cache->save('api_forcelat'.$nip, $forcelat, 3600000);
+      }
 
       return $this->response->setJSON(['status'=>'success']);
     }
