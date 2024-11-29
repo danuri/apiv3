@@ -72,6 +72,7 @@ $routes->group('converter', static function ($routes) {
 });
 
 $routes->get('redis', 'Redis::index');
+$routes->get('redis/reindex/(:any)', 'Redis::reindex/$1');
 $routes->get('redis/updatepegawai/(:any)', 'Redis::updatepegawai/$1');
 $routes->get('redis/updateuser/(:any)', 'Redis::updateuser/$1');
 $routes->get('redis/updatelatlon/(:any)', 'Redis::updatelatlon/$1');

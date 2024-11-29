@@ -26,9 +26,12 @@ class Redis extends BaseController
       // print_r($json);
     }
 
-    public function reindex()
+    public function reindex($nip)
     {
-      $db = new SimpegModel;
+      // $db = new SimpegModel;
+      $this->updatepegawai($nip);
+      $this->updateuser($nip);
+      $this->updatelatlon($nip);
     }
 
     public function updatepegawai($nip)
