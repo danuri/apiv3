@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\SimpegModel;
+use App\Models\Simpeg43Model;
 use CodeIgniter\Cache\Cache;
 
 class Redis extends BaseController
@@ -60,7 +61,7 @@ class Redis extends BaseController
     {
       $cache = \Config\Services::cache();
 
-      $db = new SimpegModel;
+      $db = new Simpeg43Model;
       $forcelat = $db->getRow('TEMP_PEGAWAI_LATLON',array('NIP_BARU'=>$nip));
       if ($forcelat) {
         $cache->save('api_forcelat'.$nip, $forcelat, 3600000);
